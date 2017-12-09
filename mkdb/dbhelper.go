@@ -1,9 +1,9 @@
 package mkdb
 
 import (
-	"mkgo/mklog"
-	"math/rand"
 	"github.com/jmoiron/sqlx"
+	"math/rand"
+	"mkgo/mklog"
 )
 
 func GetWriteDB() (db *sqlx.DB) {
@@ -28,4 +28,3 @@ func GetReadDB() (db *sqlx.DB) {
 type Table interface {
 	TableName() string
 }
-

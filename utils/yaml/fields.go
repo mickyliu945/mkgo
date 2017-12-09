@@ -1,15 +1,15 @@
 package yaml
 
 import (
-"bytes"
-"encoding"
-"encoding/json"
-"reflect"
-"sort"
-"strings"
-"sync"
-"unicode"
-"unicode/utf8"
+	"bytes"
+	"encoding"
+	"encoding/json"
+	"reflect"
+	"sort"
+	"strings"
+	"sync"
+	"unicode"
+	"unicode/utf8"
 )
 
 // indirect walks down v allocating pointers as needed,

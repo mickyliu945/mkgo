@@ -16,7 +16,7 @@ type JSONResponse struct {
 	Data    interface{} `json:"data"`
 }
 
-func NewJSONResponse(code int, message string, data interface{}) (*JSONResponse) {
+func NewJSONResponse(code int, message string, data interface{}) *JSONResponse {
 	resp := &JSONResponse{}
 	resp.Code = code
 	resp.Message = message
@@ -24,21 +24,21 @@ func NewJSONResponse(code int, message string, data interface{}) (*JSONResponse)
 	return resp
 }
 
-func NewAuthFailedResponse(message string) (*JSONResponse) {
+func NewAuthFailedResponse(message string) *JSONResponse {
 	return &JSONResponse{
 		Code:    CodeErrorTokenAuth,
 		Message: message,
 	}
 }
 
-func NewTokenExpiredResponse() (*JSONResponse) {
+func NewTokenExpiredResponse() *JSONResponse {
 	return &JSONResponse{
 		Code:    CodeErrorTokenExpired,
 		Message: "Token is expired, please login again!",
 	}
 }
 
-func NewEmptyDataResponse(message string) (*JSONResponse) {
+func NewEmptyDataResponse(message string) *JSONResponse {
 	resp := &JSONResponse{}
 	resp.Code = CodeSuccess
 	resp.Message = message

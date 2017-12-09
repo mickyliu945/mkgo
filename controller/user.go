@@ -2,16 +2,16 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
-	"mkgo/model"
 	"mkgo/common"
 	"mkgo/middleware/jwtauth"
+	"mkgo/model"
+	"net/http"
 )
 
 type UserController struct{}
 
 type loginResponse struct {
-	Token string    `json:"token"`
+	Token string     `json:"token"`
 	User  model.User `json:"user"`
 }
 

@@ -3,9 +3,9 @@ package server
 import (
 	"github.com/gin-gonic/gin"
 	"mkgo/controller"
-	"net/http"
-	"mkgo/mkconfig"
 	"mkgo/middleware/jwtauth"
+	"mkgo/mkconfig"
+	"net/http"
 )
 
 const rootApiName = "/api/v1"

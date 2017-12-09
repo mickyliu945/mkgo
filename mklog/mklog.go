@@ -3,9 +3,9 @@ package mklog
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+	"log"
 	"mkgo/mkconfig"
 )
 

@@ -1,13 +1,13 @@
 package jwtauth
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/dgrijalva/jwt-go"
 	"errors"
+	"github.com/dgrijalva/jwt-go"
+	"github.com/gin-gonic/gin"
+	"mkgo/common"
+	"mkgo/mklog"
 	"net/http"
 	"time"
-	"mkgo/mklog"
-	"mkgo/common"
 )
 
 const tokenExpireTime = 30 * time.Minute
@@ -64,7 +64,7 @@ func SetSignKey(key string) string {
 	return SignKey
 }
 
-func GetToken(c *gin.Context, user string) (string) {
+func GetToken(c *gin.Context, user string) string {
 	claims := CustomClaims{}
 	claims.User = user
 	j := NewJWT()

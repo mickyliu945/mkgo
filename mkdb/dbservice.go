@@ -1,10 +1,10 @@
 package mkdb
 
 import (
-	"mkgo/mkconfig"
-	"go.uber.org/zap"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
+	"go.uber.org/zap"
+	"mkgo/mkconfig"
 	"mkgo/mklog"
 )
 
@@ -59,4 +59,3 @@ func setupDB(conf *mkconfig.DBConfig, db *sqlx.DB) {
 	db.SetMaxOpenConns(conf.MaxOpenConns)
 	db.SetMaxIdleConns(conf.MaxOpenConns)
 }
-

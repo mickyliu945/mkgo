@@ -1,4 +1,5 @@
 package mapstruct
+
 import (
 	"errors"
 	"fmt"
