@@ -1,0 +1,67 @@
+mkgo:
+  name: MKApplication
+  debug: true
+  server_port: 8888
+  read_timeout: 30
+  write_timeout: 30
+  log:
+    path: ./logs
+    level: debug
+  datasource:
+    read_size: 3
+    write:
+      driver: mysql
+      host: root:@tcp(127.0.0.1:3306)/blogdb?charset=utf8
+      max_open_conns: 100
+      max_idle_conns: 100
+      show_sql: true
+      table_fix: prefix
+      table_space:
+      table_snake: true
+      column_fix: prefix
+      column_space:
+      column_snack: true
+      disable_cache: true
+      show_exec_time: true
+    read1:
+      driver: mysql
+      host: root:@tcp(127.0.0.1:3306)/test?charset=utf8
+      max_open_conns: 100
+      max_idle_conns: 100
+      show_sql: true
+      table_fix: prefix
+      table_space:
+      table_snake: true
+      column_fix: prefix
+      column_space:
+      column_snack: true
+      disable_cache: true
+      show_exec_time: true
+    read2:
+      driver: mysql
+      host: root:@tcp(127.0.0.1:3306)/test?charset=utf8
+      max_open_conns: 100
+      max_idle_conns: 100
+      show_sql: true
+      table_fix: prefix
+      table_space:
+      table_snake: true
+      column_fix: prefix
+      column_space:
+      column_snack: true
+      disable_cache: true
+      show_exec_time: true
+    read3:
+      driver: mysql
+      host: root:@tcp(127.0.0.1:3306)/test?charset=utf8
+      max_open_conns: 100
+      max_idle_conns: 100
+      show_sql: true
+      table_fix: prefix
+      table_space:
+      table_snake: true
+      column_fix: prefix
+      column_space:
+      column_snack: true
+      disable_cache: true
+      show_exec_time: true
