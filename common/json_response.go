@@ -6,6 +6,7 @@ const (
 	CodeErrorInternal     = 9001
 	CodeErrorTokenAuth    = 9002
 	CodeErrorTokenExpired = 9003
+	CodeErrorRegister = 9004
 
 	MessageSuccess = "success"
 )

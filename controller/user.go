@@ -7,6 +7,8 @@ import (
 	"mkgo/model"
 	"net/http"
 	"mkgo/mkdb"
+	"mkgo/mklog"
+	"go.uber.org/zap"
 )
 
 type UserController struct{}
@@ -17,9 +19,18 @@ type loginResponse struct {
 }
 
 func (ctrl UserController) Register(c *gin.Context) {
-	inertUser := `INSERT INTO place (country, telcode) VALUES (?, ?)`
-	mkdb.GetWriteDB().Exec(inertUser)
-	c.String(http.StatusOK, "Register Success!")
+	username := c.PostForm("username")
+	password := c.PostForm("password")
+
+	inertUser := `INSERT INTO user ( name, password) VALUES (?, ?)`
+	_, err := mkdb.GetWriteDB().Exec(inertUser, username, password)
+	if err != nil {
+		mklog.Logger.Error("[register]", zap.Error(err))
+		c.JSON(http.StatusOK, common.NewJSONResponse(common.CodeErrorRegister, "Register failed", nil))
+		return
+	}
+	c.JSON(http.StatusOK, common.NewJSONResponse(common.CodeSuccess, "Register success", nil))
+
 }
 
 func (ctrl UserController) Login(c *gin.Context) {
