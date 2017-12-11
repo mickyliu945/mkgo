@@ -5,6 +5,7 @@ import (
 	"log"
 	"mkgo/utils/yaml"
 	"os"
+	"time"
 )
 
 var Config RootConfig
@@ -23,22 +24,29 @@ func Init() {
 }
 
 type RootConfig struct {
-	MLGO MLGOConfig `json:"mkgo"`
+	MKGo `json:"mkgo"`
 }
 
-type MLGOConfig struct {
-	Name         string     `json:"name"`
-	ServerPort   string     `json:"server_port"`
-	ReadTimeout  int        `json:"read_timeout"`
-	WriteTimeout int        `json:"write_timeout"`
-	Debug        bool       `json:"debug"`
-	Log          Log        `json:"log"`
-	Datasource   DataSource `json:"datasource"`
+type MKGo struct {
+	Name         string        `json:"name"`
+	ServerPort   string        `json:"server_port"`
+	ReadTimeout  time.Duration `json:"read_timeout"`
+	WriteTimeout time.Duration `json:"write_timeout"`
+	Debug        bool          `json:"debug"`
+	Log          Log           `json:"log"`
+	Redis                      `json:"redis"`
+	DataSource                 `json:"data_source"`
 }
 
 type Log struct {
 	Path  string `json:"path"`
 	Level string `json:"level"`
+}
+
+type Redis struct {
+	Host      string `json:"host"`
+	MaxIdle   int    `json:"max_idle"`
+	MaxActive int    `json:"max_active"`
 }
 
 type DataSource struct {

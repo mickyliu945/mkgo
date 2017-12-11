@@ -15,18 +15,18 @@ type DBService struct {
 
 var dbService = func() (serv *DBService) {
 	var readConfigArr []*mkconfig.DBConfig
-	for i := 0; i < mkconfig.Config.MLGO.Datasource.ReadSize; i++ {
+	for i := 0; i < mkconfig.Config.MKGo.DataSource.ReadSize; i++ {
 		switch i {
 		case 1:
-			readConfigArr = append(readConfigArr, mkconfig.Config.MLGO.Datasource.Read1)
+			readConfigArr = append(readConfigArr, mkconfig.Config.MKGo.DataSource.Read1)
 		case 2:
-			readConfigArr = append(readConfigArr, mkconfig.Config.MLGO.Datasource.Read2)
+			readConfigArr = append(readConfigArr, mkconfig.Config.MKGo.DataSource.Read2)
 		case 3:
-			readConfigArr = append(readConfigArr, mkconfig.Config.MLGO.Datasource.Read3)
+			readConfigArr = append(readConfigArr, mkconfig.Config.MKGo.DataSource.Read3)
 		case 4:
-			readConfigArr = append(readConfigArr, mkconfig.Config.MLGO.Datasource.Read4)
+			readConfigArr = append(readConfigArr, mkconfig.Config.MKGo.DataSource.Read4)
 		case 5:
-			readConfigArr = append(readConfigArr, mkconfig.Config.MLGO.Datasource.Read5)
+			readConfigArr = append(readConfigArr, mkconfig.Config.MKGo.DataSource.Read5)
 		}
 	}
 
@@ -34,11 +34,11 @@ var dbService = func() (serv *DBService) {
 
 	var db *sqlx.DB
 	var err error
-	db, err = sqlx.Connect(mkconfig.Config.MLGO.Datasource.Write.Driver, mkconfig.Config.MLGO.Datasource.Write.Host)
+	db, err = sqlx.Connect(mkconfig.Config.MKGo.DataSource.Write.Driver, mkconfig.Config.MKGo.DataSource.Write.Host)
 	if err != nil {
 		mklog.Logger.Error("[database]", zap.Error(err))
 	} else {
-		setupDB(mkconfig.Config.MLGO.Datasource.Write, db)
+		setupDB(mkconfig.Config.MKGo.DataSource.Write, db)
 		serv.WriteDB = db
 	}
 

@@ -13,7 +13,7 @@ const rootApiName = "/api/v1"
 func GetRouter() *gin.Engine {
 	router := gin.Default()
 
-	if mkconfig.Config.MLGO.Debug {
+	if mkconfig.Config.MKGo.Debug {
 		gin.SetMode(gin.DebugMode)
 	} else {
 		gin.SetMode(gin.ReleaseMode)
@@ -38,7 +38,7 @@ func GetRouter() *gin.Engine {
 	router.Static("/public", "./public")
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tmpl", gin.H{
-			"name": mkconfig.Config.MLGO.Name,
+			"name": mkconfig.Config.MKGo.Name,
 		})
 	})
 	router.NoRoute(func(c *gin.Context) {

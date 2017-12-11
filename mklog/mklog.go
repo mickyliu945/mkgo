@@ -13,9 +13,9 @@ var Logger *zap.Logger
 
 func Init() {
 	log.SetFlags(log.Lmicroseconds | log.Lshortfile | log.LstdFlags)
-	initLogger(mkconfig.Config.MLGO.Log.Path,
-		mkconfig.Config.MLGO.Log.Level,
-		mkconfig.Config.MLGO.Debug)
+	initLogger(mkconfig.Config.MKGo.Log.Path,
+		mkconfig.Config.MKGo.Log.Level,
+		mkconfig.Config.MKGo.Debug)
 }
 
 func initLogger(path string, level string, isDebug bool) {
