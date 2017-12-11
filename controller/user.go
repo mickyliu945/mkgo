@@ -6,6 +6,7 @@ import (
 	"mkgo/middleware/jwtauth"
 	"mkgo/model"
 	"net/http"
+	"mkgo/mkdb"
 )
 
 type UserController struct{}
@@ -16,6 +17,8 @@ type loginResponse struct {
 }
 
 func (ctrl UserController) Register(c *gin.Context) {
+	inertUser := `INSERT INTO place (country, telcode) VALUES (?, ?)`
+	mkdb.GetWriteDB().Exec(inertUser)
 	c.String(http.StatusOK, "Register Success!")
 }
 

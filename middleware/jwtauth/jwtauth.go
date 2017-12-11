@@ -28,9 +28,11 @@ func JWTAuth() gin.HandlerFunc {
 					c.JSON(http.StatusUnauthorized, common.NewAuthFailedResponse("Auth failed"))
 					c.Abort()
 				}
-				return
 			}
+			return
 		}
+		c.JSON(http.StatusUnauthorized, common.NewAuthFailedResponse("Auth failed"))
+		c.Abort()
 	}
 }
 
