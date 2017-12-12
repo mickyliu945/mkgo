@@ -30,8 +30,10 @@ func GetRouter() *gin.Engine {
 	userGroup := router.Group(rootApiName + "/user")
 	{
 		userGroup.Use(jwtauth.JWTAuth())
+
 		user := new(controller.UserController)
-		userGroup.GET("/findUser", user.GetUser)
+		userGroup.GET("/findById", user.GetUserById)
+		userGroup.GET("/list", user.GetUserList)
 	}
 
 	router.LoadHTMLGlob("./public/html/*")

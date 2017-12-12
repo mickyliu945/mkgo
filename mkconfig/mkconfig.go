@@ -49,28 +49,8 @@ type Redis struct {
 }
 
 type DataSource struct {
-	ReadSize int       `yaml:"read_size"`
-	Write    *DBConfig `yaml:"write"`
-	Read1    *DBConfig `yaml:"read1"`
-	Read2    *DBConfig `yaml:"read2"`
-	Read3    *DBConfig `yaml:"read3"`
-	Read4    *DBConfig `yaml:"read4"`
-	Read5    *DBConfig `yaml:"read5"`
-}
-
-type DBConfig struct {
-	Name         string `yaml:"name"`
-	Driver       string `yaml:"driver"`
-	Host         string `yaml:"host"`
-	MaxOpenConns int    `yaml:"max_open_conns"`
-	MaxIdleConns int    `yaml:"max_idle_conns"`
-	ShowSql      bool   `yaml:"show_sql"`
-	TableFix     string `yaml:"table_fix"`
-	TableSpace   string `yaml:"table_space"`
-	TableSnake   bool   `yaml:"table_snake"`
-	ColumnFix    string `yaml:"column_fix"`
-	ColumnSpace  string `yaml:"column_space"`
-	ColumnSnake  bool   `yaml:"column_snake"`
-	DisableCache bool   `yaml:"disable_cache"`
-	ShowExecTime bool   `yaml:"show_exec_time"`
+	MaxOpenConns int      `yaml:"max_open_conns"`
+	MaxIdleConns int      `yaml:"max_idle_conns"`
+	Write        []string `yaml:"write"`
+	Read         []string `yaml:"read"`
 }

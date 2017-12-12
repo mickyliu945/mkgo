@@ -4,33 +4,18 @@ mkgo:
   server_port: 8888
   read_timeout: 30
   write_timeout: 30
+  log:
+    path: ./logs
+    level: debug
   redis:
     host: 192.168.0.111:6379
     max_idle: 10
     max_active: 5
-  log:
-    path: ./logs
-    level: debug
   data_source:
-    read_size: 3
+    max_open_conns: 100
+    max_idle_conns: 100
     write:
-      driver: mysql
-      host: root:123456@tcp(127.0.0.1:3306)/blogdb?charset=utf8
-      max_open_conns: 100
-      max_idle_conns: 100
-    read1:
-      driver: mysql
-      host: root:123456@tcp(127.0.0.1:3306)/blogdb?charset=utf8
-      max_open_conns: 100
-      max_idle_conns: 100
-    read2:
-      driver: mysql
-      host: root:123456@tcp(127.0.0.1:3306)/blogdb?charset=utf8
-      max_open_conns: 100
-      max_idle_conns: 100
-      show_sql: true
-    read3:
-      driver: mysql
-      host: root:123456@tcp(127.0.0.1:3306)/blogdb?charset=utf8
-      max_open_conns: 100
-      max_idle_conns: 100
+      - root:123456@tcp(127.0.0.1:3306)/blogdb?charset=utf8
+    read:
+      - root:123456@tcp(127.0.0.1:3306)/blogdb?charset=utf8
+      - root:123456@tcp(127.0.0.1:3306)/blogdb?charset=utf8
