@@ -14,7 +14,9 @@ type User struct {
 	Nickname string `json:"nickname"`
 }
 
-func (user *User) Add() bool {
+type UserManager struct {}
+
+func (*UserManager) AddUser(user *User) bool {
 	inertUser := `INSERT INTO user ( name, password) VALUES (?, ?)`
 	_, err := mkdb.DB.Exec(inertUser, user.Name, user.Password)
 	if err != nil {
@@ -24,7 +26,7 @@ func (user *User) Add() bool {
 	return true
 }
 
-func GetUserById(id string) *User {
+func (*UserManager) GetUserById(id string) *User {
 	var user User
 	err := mkdb.DB.Get(&user, `SELECT name, password from user where id=? limit 1`, id)
 	if err != nil {
@@ -34,7 +36,7 @@ func GetUserById(id string) *User {
 	return &user
 }
 
-func GetUserList() []User {
+func (*UserManager) GetUserList() []User {
 	var users []User
 	err := mkdb.DB.Select(&users, "SELECT name, password FROM user")
 	if err != nil {

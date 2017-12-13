@@ -15,11 +15,13 @@ type loginResponse struct {
 	User  model.User `json:"user"`
 }
 
-func (ctrl UserController) Register(c *gin.Context) {
+var userManager = &model.UserManager{}
+
+func (ctrl *UserController) Register(c *gin.Context) {
 	username := c.PostForm("username")
 	password := c.PostForm("password")
 
-	b := (&model.User{Name:username, Password: password}).Add()
+	b := userManager.AddUser(&model.User{Name:username, Password: password})
 	if !b {
 		c.JSON(http.StatusOK, common.NewJSONResponse(common.CodeErrorRegister, "Register failed", nil))
 		return
@@ -28,7 +30,7 @@ func (ctrl UserController) Register(c *gin.Context) {
 
 }
 
-func (ctrl UserController) Login(c *gin.Context) {
+func (ctrl *UserController) Login(c *gin.Context) {
 	token := jwtauth.GetToken(c, "mickyliu")
 	if token == "" {
 		result := common.NewJSONResponse(common.CodeErrorInternal, "create token failed", nil)
@@ -40,14 +42,14 @@ func (ctrl UserController) Login(c *gin.Context) {
 	c.JSON(common.CodeSuccess, result)
 }
 
-func (ctrl UserController) Logout(c *gin.Context) {
+func (ctrl *UserController) Logout(c *gin.Context) {
 	c.String(common.CodeSuccess, "Logout!")
 }
 
-func (ctrl UserController) GetUserById(c *gin.Context) {
+func (ctrl *UserController) GetUserById(c *gin.Context) {
 	id := c.DefaultQuery("id", "")
 	if id != "" {
-		user := model.GetUserById(id)
+		user := userManager.GetUserById(id)
 		result := common.NewJSONResponse(common.CodeSuccess, common.MessageSuccess, user)
 		c.JSON(common.CodeSuccess, result)
 	} else {
@@ -55,8 +57,8 @@ func (ctrl UserController) GetUserById(c *gin.Context) {
 	}
 }
 
-func (ctrl UserController) GetUserList(c *gin.Context) {
-	users := model.GetUserList()
+func (ctrl *UserController) GetUserList(c *gin.Context) {
+	users := userManager.GetUserList()
 	result := common.NewJSONResponse(common.CodeSuccess, common.MessageSuccess, users)
 	c.JSON(common.CodeSuccess, result)
 }
